@@ -1,0 +1,10 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 50px;
+}
+
+.game-area{
+    display: flex;
+    justify-content: center;
+}
