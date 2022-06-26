@@ -22,7 +22,8 @@ body {
 }
 
 #question-text {
-    font-size: 40px;
+    font-size: 30px;
+    align-self: center;
 }
 
 .game-area {
