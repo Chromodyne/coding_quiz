@@ -14,7 +14,7 @@
 
         <header>
             <nav>
-                <a href="#">Leaderboard</a>
+                <a id="leaderboard" href="#">Leaderboard</a>
                 <p id="timer">Time Remaining: 0</p>
             </nav>
         </header>
@@ -22,23 +22,33 @@
         <main>
 
             <section class="game-area">
-
                 <div class="question-box">
 
-                    <p class="question">Question Goes Here</p>
-                    <ul class="answer-list">
-                        <li id="choice1">Choice 1</li>
-                        <li id="choice2">Choice 2</li>
-                        <li id="choice3">Choice 3</li>
-                        <li id="choice4">Choice 4</li>
-                    </ul>
+                    <h1 id="question-text">Question Goes Here</p>
 
+                </div>
+
+                <div class="choice-box">
+                    <p id="choice1">Choice 1</p>
+                    <p id="choice2">Choice 2</p>
+                    <p id="choice3">Choice 3</p>
+                    <p id="choice4">Choice 4</p>
+                </div>
+
+                <div id="timer-bar">
+                    <div class="time-remaining"></div>
                 </div>
 
             </section>
 
+            <footer>
+                
+            </footer>
+
         </main>
         
+        <script src="./assets/js/script.js"></script>
+
     </body>
 
 </html>

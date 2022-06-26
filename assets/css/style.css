@@ -4,7 +4,62 @@ nav {
     margin: 20px 50px;
 }
 
-.game-area{
+body {
+    font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, sans-serif;
+}
+
+#leaderboard {
+    font-size: 22px;
+}
+
+#timer {
+    font-size: 22px;
+}
+
+.question-box {
     display: flex;
     justify-content: center;
+}
+
+#question-text {
+    font-size: 40px;
+}
+
+.game-area {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.choice-box {
+    margin: 20px 0px;
+    display: flex;
+    flex-flow: column nowrap;
+    height: 40%;
+}
+
+#choice1, #choice2, #choice3, #choice4 {
+    align-self: center;
+    font-size: 30px;
+    margin: 20px 0px;
+    padding: 10px 10px;
+    background-color: purple;
+    border-radius: 10px;
+    color: white;
+}
+
+.timer-bar {
+    width: 100%;
+    align-self: center;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+}
+
+.time-remaining {
+    background-color: blue;
+    border: 2px solid black;
+    height: 30px;
+    width: 50%;
+    align-self: center;
+    border-radius: 5px;
 }

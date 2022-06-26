@@ -1,0 +1,14 @@
+.plan file
+
+1. Get HTML skeleton formed.
+2. Get basic CSS styling in place.
+3. Begin logic scripting.
+
+
+
+[1] Notes
+
+Do I want to use buttons or simply text boxes w/ colored background for the answers?
+    -Currently considering simple text.
+
+[2] Notes
