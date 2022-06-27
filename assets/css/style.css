@@ -55,7 +55,7 @@ body {
 }
 
 #choice1:hover, #choice2:hover, #choice3:hover, #choice4:hover {
-    cursor:pointer;
+    cursor: pointer;
     filter: grayscale(20%);
 }
 

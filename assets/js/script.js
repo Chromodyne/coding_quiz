@@ -48,6 +48,7 @@ let Question3 = new QuizQuestion(
 
 );
 
+
 //TODO: Add more questions here.
 
 //This array stores the question object for easy comparisons later on.
@@ -69,6 +70,9 @@ gameSetup();
 
 //This function holds the logic to be used while the game loop is running.
 function gameLoop() {
+
+    allowInput = true;
+    resetDefaults();
 
     if (gameRunning) {
 
@@ -122,8 +126,8 @@ function checkAnswer(value) {
 
 function changeRound() {
      currentRound++;
-     allowInput = true;
-     gameLoop();
+     
+     setTimeout(gameLoop, 5000);
 }
 
 function evalCorrect(value) {
@@ -140,7 +144,7 @@ function evalCorrect(value) {
     }
 
     allowInput = false;
-    //Add countdown to next question then after, change the round.
+
     changeRound();
     
 }
@@ -199,4 +203,10 @@ function changeQuestion() {
     }
 
 }
-    
+
+function resetDefaults() {
+    c1Text.style.backgroundColor = "purple";
+    c2Text.style.backgroundColor = "purple";
+    c3Text.style.backgroundColor = "purple";
+    c4Text.style.backgroundColor = "purple";
+}
