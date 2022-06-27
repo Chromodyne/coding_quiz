@@ -113,10 +113,10 @@ function gameInit() {
 function checkAnswer(value) {
     if(value === questionArray[currentRound].correctAnswer) {
         numCorrect++;
-        evalCorrect();
+        evalCorrect(value);
     } else {
         numIncorrect++;
-        evalIncorrect();
+        evalIncorrect(value);
     }
 }
 
@@ -126,20 +126,51 @@ function changeRound() {
      gameLoop();
 }
 
-function evalCorrect() {
+function evalCorrect(value) {
     qText.textContent = "Correct!"
-    //Set the "button" color green.
-    //TODO: Generalize this.
-    c3Text.style.backgroundColor = "green";
+ 
+    if (value === 0) {
+        c1Text.style.backgroundColor = "green";
+    } else if (value === 1) {
+        c2Text.style.backgroundColor = "green";
+    } else if (value === 2) {
+        c3Text.style.backgroundColor = "green";
+    } else if (value === 3) {
+        c4Text.style.backgroundColor = "green";
+    }
+
     allowInput = false;
     //Add countdown to next question then after, change the round.
     changeRound();
     
 }
 
-function evalIncorrect() {
+function evalIncorrect(value) {
     qText.textContent = "Sorry, that is incorrect.";
-    c1Text.style.backgroundColor = "red";
+
+    let correct = questionArray[currentRound].correctAnswer;
+    
+    if (value === 0) {
+        c1Text.style.backgroundColor = "red";
+    } else if (value === 1) {
+        c2Text.style.backgroundColor = "red";
+    } else if (value === 2) {
+        c3Text.style.backgroundColor = "red";
+    } else if (value === 3) {
+        c4Text.style.backgroundColor = "red";
+    }
+
+    if (correct === 0) {
+        c1Text.style.backgroundColor = "cyan";
+    } else if (correct === 1) {
+        c2Text.style.backgroundColor = "cyan";
+    } else if (correct === 2) {
+        c3Text.style.backgroundColor = "cyan";
+    } else if (correct === 3) {
+        c4Text.style.backgroundColor = "cyan";
+    }
+
+
     changeRound();
 
  }
