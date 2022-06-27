@@ -114,6 +114,7 @@ function gameInit() {
 
 }
 
+//Evaluates whether the selected answer was correct or incorrect.
 function checkAnswer(value) {
     if(value === questionArray[currentRound].correctAnswer) {
         numCorrect++;
@@ -124,12 +125,14 @@ function checkAnswer(value) {
     }
 }
 
+//Changes currentRound state variable and waits 5 seconds before changing the round.
 function changeRound() {
      currentRound++;
      
      setTimeout(gameLoop, 5000);
 }
 
+//Invoked when checkAnswer determines the answer selected was correct.
 function evalCorrect(value) {
     qText.textContent = "Correct!"
  
@@ -149,6 +152,7 @@ function evalCorrect(value) {
     
 }
 
+//Invoked when checkAnswer determines the answer selected was incorrect.
 function evalIncorrect(value) {
     qText.textContent = "Sorry, that is incorrect.";
 
@@ -179,6 +183,7 @@ function evalIncorrect(value) {
 
  }
 
+//Changes the question and answer text on new round also listens for click events.
 function changeQuestion() {
     qText.textContent = questionArray[currentRound].questionText;
     c1Text.textContent = questionArray[currentRound].choiceOneText;
@@ -204,6 +209,7 @@ function changeQuestion() {
 
 }
 
+//Used to reset the colors of the choice backgrounds on a new round start.
 function resetDefaults() {
     c1Text.style.backgroundColor = "purple";
     c2Text.style.backgroundColor = "purple";
