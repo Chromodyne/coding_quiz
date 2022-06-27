@@ -28,7 +28,7 @@ let Question1 = new QuizQuestion(
 
 let Question2 = new QuizQuestion(
 
-    "Which of the following is an example of a 'falsy' value? ",
+    "Which of the following is an example of a 'falsy' value?",
     "NaN",
     "Undefined",
     "0",
@@ -39,12 +39,12 @@ let Question2 = new QuizQuestion(
 
 let Question3 = new QuizQuestion(
 
-    "Which of the following is an example of a 'falsy' value? ",
-    "NaN",
-    "Undefined",
-    "0",
-    "All of the above.",
-    3
+    "What sort of 'typing' does the JavaScript language use?",
+    "Strong",
+    "Dynamic",
+    "Ambivalent",
+    "Literal",
+    0
 
 );
 
@@ -53,8 +53,10 @@ let Question3 = new QuizQuestion(
 //This array stores the question object for easy comparisons later on.
 let questionArray = [Question1, Question2, Question3];
 
+//STATE-VARIABLES
 //Boolean to control the state of the game.
 let gameRunning = false;
+let allowInput = true;
 //Keeps track of the maximum number of rounds.
 let finalRound = 3;
 //Keeps track of the current round.
@@ -71,28 +73,15 @@ function gameLoop() {
     if (gameRunning) {
 
         if (currentRound === 0) {
+            changeQuestion();
+        }
 
-            currentQuestion = 1;
+        if (currentRound === 1) {
+            changeQuestion();
+        }
 
-            qText.textContent = Question1.questionText;
-            c1Text.textContent = Question1.choiceOneText;
-            c2Text.textContent = Question1.choiceTwoText;
-            c3Text.textContent = Question1.choiceThreeText;
-            c4Text.textContent = Question1.choiceFourText;
-
-            c1Text.addEventListener("click", function() {
-                checkAnswer(0);
-            });
-            c2Text.addEventListener("click", function() {
-                checkAnswer(1);
-            });
-            c3Text.addEventListener("click", function() {
-                checkAnswer(2);
-            });
-            c4Text.addEventListener("click", function() {
-                checkAnswer(3);
-            });
-
+        if (currentRound === 2) {
+            changeQuestion();
         }
 
    }
@@ -116,7 +105,6 @@ function gameInit() {
     document.getElementById("choice4").style.display = "block";
     
     gameRunning = true;
-    currentQuestion = 1;
 
     gameLoop();
 
@@ -128,15 +116,14 @@ function checkAnswer(value) {
         evalCorrect();
     } else {
         numIncorrect++;
+        evalIncorrect();
     }
 }
 
 function changeRound() {
-    currentRound++;
-}
-
-function gameTimer() {
-
+     currentRound++;
+     allowInput = true;
+     gameLoop();
 }
 
 function evalCorrect() {
@@ -144,13 +131,41 @@ function evalCorrect() {
     //Set the "button" color green.
     //TODO: Generalize this.
     c3Text.style.backgroundColor = "green";
+    allowInput = false;
+    //Add countdown to next question then after, change the round.
+    changeRound();
+    
 }
 
 function evalIncorrect() {
+    qText.textContent = "Sorry, that is incorrect.";
+    c1Text.style.backgroundColor = "red";
+    changeRound();
 
-
-}
+ }
 
 function changeQuestion() {
-    
+    qText.textContent = questionArray[currentRound].questionText;
+    c1Text.textContent = questionArray[currentRound].choiceOneText;
+    c2Text.textContent = questionArray[currentRound].choiceTwoText;
+    c3Text.textContent = questionArray[currentRound].choiceThreeText;
+    c4Text.textContent = questionArray[currentRound].choiceFourText;
+
+    if (allowInput) {
+
+        c1Text.addEventListener("click", function() {
+            checkAnswer(0);
+        });
+        c2Text.addEventListener("click", function() {
+            checkAnswer(1);
+        });
+        c3Text.addEventListener("click", function() {
+            checkAnswer(2);
+        });
+        c4Text.addEventListener("click", function() {
+            checkAnswer(3);
+        });
+    }
+
 }
+    
