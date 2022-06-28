@@ -50,8 +50,19 @@ let Question3 = new QuizQuestion(
 
 );
 
+let Question4 = new QuizQuestion(
+
+    "What is a very common use of a for loop?",
+    "To iterate through an array.",
+    "To return from a function repeatedly.",
+    "To change callbacks on each loop cycle.",
+    "To hack the Gibson.",
+    0
+
+);
+
 //This array stores the question object for easy comparisons later on.
-let questionArray = [Question1, Question2, Question3];
+let questionArray = [Question1, Question2, Question3, Question4];
 
 //STATE-VARIABLES
 //Boolean to control the state of the game.
@@ -170,6 +181,7 @@ function evalIncorrect(value) {
  //Changes currentRound state variable and waits 5 seconds before changing the round.
 function changeRound() {
     currentRound++;
+    setTimeout(changeQuestion, 5000);
 }
 
 
@@ -181,10 +193,6 @@ function changeQuestion() {
     c2Text.textContent = questionArray[currentRound].choiceTwoText;
     c3Text.textContent = questionArray[currentRound].choiceThreeText;
     c4Text.textContent = questionArray[currentRound].choiceFourText;
-
-    allowInput = true;
-
-    
 
 }
 
