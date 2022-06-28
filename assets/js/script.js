@@ -61,8 +61,74 @@ let Question4 = new QuizQuestion(
 
 );
 
+let Question5 = new QuizQuestion(
+
+    "What is JavaScripts relation to Java?",
+    "JavaScript is a fork of Java used for web applications.",
+    "The two are completely unrelated.",
+    "Java is dynamically typed whereas JavaScript is strongly typed.",
+    "JavaScript is interpreted whearas Java is compiled.",
+    1
+
+);
+
+let Question6 = new QuizQuestion(
+
+    "What type of programming language is JavaScript?",
+    "Imperative",
+    "Object-Oriented",
+    "Recursive",
+    "Asynchronous",
+    1
+
+);
+
+let Question7 = new QuizQuestion(
+
+    "Which of the following best descibes a boolean?",
+    "A lean function",
+    "The current stack offset",
+    "An octal number which is passed as an argument to a function.",
+    "A binary statement with only two possible states.",
+    3
+
+);
+
+let Question8 = new QuizQuestion(
+
+    "Which of the following data types is not one used in JavaScript?",
+    "Number",
+    "Decimal",
+    "Long",
+    "String",
+    2
+
+);
+
+let Question9 = new QuizQuestion(
+
+    "Which major implementation of JavaScript introduced arrow functions?",
+    "TS1",
+    "ES5",
+    "ES6",
+    "ES10",
+    2
+
+);
+
+let Question10 = new QuizQuestion(
+
+    "Which of the follow can JavaScript be used for?",
+    "Web Applications",
+    "Desktop Applications via Electron",
+    "Games",
+    "All of the above",
+    3
+
+);
+
 //This array stores the question object for easy comparisons later on.
-let questionArray = [Question1, Question2, Question3, Question4];
+let questionArray = [Question1, Question2, Question3, Question4, Question5, Question6, Question7, Question8, Question9, Question10];
 
 //STATE-VARIABLES
 //Boolean to control the state of the game.
@@ -188,6 +254,8 @@ function changeRound() {
 //Changes the question and answer text on new round also listens for click events.
 function changeQuestion() {
 
+    resetDefaults();
+
     qText.textContent = questionArray[currentRound].questionText;
     c1Text.textContent = questionArray[currentRound].choiceOneText;
     c2Text.textContent = questionArray[currentRound].choiceTwoText;
@@ -204,8 +272,4 @@ function resetDefaults() {
     c3Text.style.backgroundColor = "purple";
     c4Text.style.backgroundColor = "purple";
 
-}
-
-function forceReturn() {
-    return;
 }
