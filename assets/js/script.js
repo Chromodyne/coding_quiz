@@ -118,7 +118,7 @@ let Question9 = new QuizQuestion(
 
 let Question10 = new QuizQuestion(
 
-    "Which of the follow can JavaScript be used for?",
+    "Which of the following can JavaScript be used for?",
     "Web Applications",
     "Desktop Applications via Electron",
     "Games",
@@ -135,7 +135,7 @@ let questionArray = [Question1, Question2, Question3, Question4, Question5, Ques
 let gameRunning = true;
 let allowInput = false;
 //Keeps track of the maximum number of rounds.
-let finalRound = 3;
+let finalRound = 9
 //Keeps track of the current round.
 let currentRound = 0;
 
@@ -157,19 +157,15 @@ function gameInit() {
 
     c1Text.addEventListener("click", function() {
         checkAnswer(0);
-        console.log("Clicked answer zero.");
     });
     c2Text.addEventListener("click", function() {
         checkAnswer(1);
-        console.log("Clicked answer one.");
     });
     c3Text.addEventListener("click", function() {
         checkAnswer(2);
-        console.log("Clicked answer two.");
     });
     c4Text.addEventListener("click", function() {
         checkAnswer(3);
-        console.log("Clicked answer three.");
     });
     
     changeQuestion();
@@ -246,8 +242,15 @@ function evalIncorrect(value) {
 
  //Changes currentRound state variable and waits 5 seconds before changing the round.
 function changeRound() {
+
     currentRound++;
-    setTimeout(changeQuestion, 5000);
+    
+    if (currentRound <= finalRound) {
+        setTimeout(changeQuestion, 500);
+    } else {
+        scoreEntry();
+    }
+    
 }
 
 
@@ -271,5 +274,22 @@ function resetDefaults() {
     c2Text.style.backgroundColor = "purple";
     c3Text.style.backgroundColor = "purple";
     c4Text.style.backgroundColor = "purple";
+
+}
+
+function scoreEntry() {
+
+    //Remove "button" elements and replace the first with a text entry box that stores data.
+    console.log(`Game has ended. Correct: ${numCorrect} Incorrect: ${numIncorrect}`);
+
+    //Disables the unneeded elements.
+    document.getElementById("choice2").style.display = "none";
+    document.getElementById("choice3").style.display = "none";
+    document.getElementById("choice4").style.display = "none";
+
+    qText.textContent = "Game Over";
+    c1Text.textContent = "Please enter your name: ";
+    let input = document.createElement("input");
+    c1Text.appendChild(input);
 
 }
