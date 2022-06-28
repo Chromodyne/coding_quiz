@@ -139,6 +139,11 @@ let finalRound = 9
 //Keeps track of the current round.
 let currentRound = 0;
 
+let timeRemaining = 60;
+
+let timer = document.getElementById("timer");
+timer.textContent = `Time Remaining: ${timeRemaining}`;
+
 //Keeps track of the number of questions answered correctly or incorrectly.
 let numCorrect = 0, numIncorrect = 0;
 let startGameButton = document.querySelector("#choice1");
@@ -160,8 +165,15 @@ function gameInit() {
     c3Text.addEventListener("click", evaluateClickEvent);
     c4Text.addEventListener("click", evaluateClickEvent);
     
+    setInterval(gameTimer,1000);
+    
     changeQuestion();
 
+}
+
+function gameTimer(){
+    timeRemaining--;
+    timer.textContent = `Time Remaining: ${timeRemaining}`;
 }
 
 function evaluateClickEvent(event) {
