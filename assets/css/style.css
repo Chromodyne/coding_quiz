@@ -8,6 +8,10 @@ body {
     font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, sans-serif;
 }
 
+button {
+    background-color: blue;
+}
+
 #leaderboard {
     font-size: 22px;
 }

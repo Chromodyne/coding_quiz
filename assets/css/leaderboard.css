@@ -1,0 +1,18 @@
+#leaderboard-header {
+    margin: auto;
+    padding: 10px;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+}
+
+#name-header {
+    margin: auto;
+    border-bottom: 2px solid black;
+}
+
+#score-header {
+    margin: auto;
+}

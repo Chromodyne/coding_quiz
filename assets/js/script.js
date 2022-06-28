@@ -155,26 +155,39 @@ function gameInit() {
 
     startGameButton.removeEventListener("click", gameInit);
 
-    c1Text.addEventListener("click", function() {
-        checkAnswer(0);
-    });
-    c2Text.addEventListener("click", function() {
-        checkAnswer(1);
-    });
-    c3Text.addEventListener("click", function() {
-        checkAnswer(2);
-    });
-    c4Text.addEventListener("click", function() {
-        checkAnswer(3);
-    });
+    c1Text.addEventListener("click", evaluateClickEvent);
+    c2Text.addEventListener("click", evaluateClickEvent);
+    c3Text.addEventListener("click", evaluateClickEvent);
+    c4Text.addEventListener("click", evaluateClickEvent);
     
     changeQuestion();
+
+}
+
+function evaluateClickEvent(event) {
+
+    console.log(`Target ID: ${event.target.id}`);
+
+    let chosenAnswer = event.target.id;
+
+    if(chosenAnswer == "choice1") {
+        checkAnswer(0);
+    } else if (chosenAnswer == "choice2") {
+        checkAnswer(1);
+    } else if (chosenAnswer == "choice3") {
+        checkAnswer(2);
+    } else {
+        checkAnswer(3);
+    }
+   
 
 }
 
 //Evaluates whether the selected answer was correct or incorrect.
 function checkAnswer(value) {
 
+    console.log(`Value passed: ${value}`);
+    console.log(questionArray[currentRound].correctAnswer);
     if (value == questionArray[currentRound].correctAnswer) {
         console.log("It's correct!");
         evalCorrect(value);
@@ -283,13 +296,38 @@ function scoreEntry() {
     console.log(`Game has ended. Correct: ${numCorrect} Incorrect: ${numIncorrect}`);
 
     //Disables the unneeded elements.
-    document.getElementById("choice2").style.display = "none";
     document.getElementById("choice3").style.display = "none";
     document.getElementById("choice4").style.display = "none";
 
     qText.textContent = "Game Over";
+    
+    //Need to remove the event listeners here.
+    c1Text.removeEventListener("click", evaluateClickEvent);
+    c2Text.removeEventListener("click", evaluateClickEvent);
+    setupTextEntry();
+    
+
+}
+
+function setupTextEntry() {
+    c1Text.style.backgroundColor = "white";
+    c1Text.style.color = "black";
+    c1Text.style.border = "none";
+    c1Text.style.fontSize = "22px";
+    c2Text.textContent = "Submit";
+    c2Text.style.backgroundColor = "blue";
+    c2Text.addEventListener("click", () => {
+        submitScore(numCorrect, numIncorrect);
+    });
     c1Text.textContent = "Please enter your name: ";
     let input = document.createElement("input");
     c1Text.appendChild(input);
 
+}
+
+function submitScore() {
+
+    let totalScore = numCorrect;
+    let numQuestions = 10;
+    let percentageScore = numCorrect / numQuestions;
 }
