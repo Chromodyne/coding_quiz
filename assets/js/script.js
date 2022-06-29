@@ -7,6 +7,11 @@ let c2Text = document.getElementById("choice2");
 let c3Text = document.getElementById("choice3");
 let c4Text = document.getElementById("choice4");
 
+function Player(name, score) {
+    this.playerName = name;
+    this.playerScore = score;
+}
+
 //Constructor for Quiz Questions
 function QuizQuestion(question, c1, c2, c3, c4, correct) {
     this.questionText = question;
@@ -108,10 +113,10 @@ let Question8 = new QuizQuestion(
 let Question9 = new QuizQuestion(
 
     "Which major implementation of JavaScript introduced arrow functions?",
-    "TS1",
+    "LTS1",
     "ES5",
     "ES6",
-    "ES10",
+    "LTS12",
     2
 
 );
@@ -138,7 +143,7 @@ let allowInput = false;
 let finalRound = 9
 //Keeps track of the current round.
 let currentRound = 0;
-
+let interval;
 let timeRemaining = 60;
 
 let timer = document.getElementById("timer");
@@ -150,6 +155,7 @@ let startGameButton = document.querySelector("#choice1");
 
 startGameButton.addEventListener("click", gameInit);
 
+//Initializes the game environment.
 function gameInit() {
 
     //Enable all choice buttons.
@@ -165,20 +171,26 @@ function gameInit() {
     c3Text.addEventListener("click", evaluateClickEvent);
     c4Text.addEventListener("click", evaluateClickEvent);
     
-    setInterval(gameTimer,1000);
+    interval = setInterval(gameTimer,1000);
     
     changeQuestion();
 
 }
 
+//Handles timer logic.
 function gameTimer(){
     timeRemaining--;
     timer.textContent = `Time Remaining: ${timeRemaining}`;
+
+    if (timeRemaining <= 0) {
+        clearInterval(interval);
+        scoreEntry();
+    }
+
 }
 
+//Receives the click event parameter from even listeners and passes along arguments to game logic.
 function evaluateClickEvent(event) {
-
-    console.log(`Target ID: ${event.target.id}`);
 
     let chosenAnswer = event.target.id;
 
@@ -192,32 +204,25 @@ function evaluateClickEvent(event) {
         checkAnswer(3);
     }
    
-
 }
 
 //Evaluates whether the selected answer was correct or incorrect.
 function checkAnswer(value) {
 
-    console.log(`Value passed: ${value}`);
-    console.log(questionArray[currentRound].correctAnswer);
     if (value == questionArray[currentRound].correctAnswer) {
-        console.log("It's correct!");
         evalCorrect(value);
     } else {
-        console.log("It's incorrect. :(");
         evalIncorrect(value);
     }
 
 }
 
-
 //Invoked when checkAnswer determines the answer selected was correct.
 function evalCorrect(value) {
 
     //Change question text to "Correct!";
-    let correct = questionArray[currentRound].correctAnswer;
     qText.textContent = "Correct!";
-    //console.log("Evaluated corect.");
+    numCorrect++;
  
     //Color the correct answer green if selected.
     if (value === 0) {
@@ -236,10 +241,12 @@ function evalCorrect(value) {
 
 //Invoked when checkAnswer determines the answer selected was incorrect.
 function evalIncorrect(value) {
+
     qText.textContent = "Sorry, that is incorrect.";
 
+    numIncorrect++;
+
     let correct = questionArray[currentRound].correctAnswer;
-    //console.log("Evaluated incorrect.");
     //Color the chosen answer red since it was deemed incorrect.
     if (value === 0) {
         c1Text.style.backgroundColor = "red";
@@ -262,6 +269,8 @@ function evalIncorrect(value) {
         c4Text.style.backgroundColor = "cyan";
     }
 
+    timeRemaining -= 5;
+
     changeRound();
  }
 
@@ -270,7 +279,7 @@ function changeRound() {
 
     currentRound++;
     
-    if (currentRound <= finalRound) {
+    if (currentRound <= finalRound && timeRemaining >= 0) {
         setTimeout(changeQuestion, 500);
     } else {
         scoreEntry();
@@ -304,6 +313,9 @@ function resetDefaults() {
 
 function scoreEntry() {
 
+    //Stops the game timer if it hasn't been stopped already.
+    clearInterval(interval);
+
     //Remove "button" elements and replace the first with a text entry box that stores data.
     console.log(`Game has ended. Correct: ${numCorrect} Incorrect: ${numIncorrect}`);
 
@@ -328,18 +340,31 @@ function setupTextEntry() {
     c1Text.style.fontSize = "22px";
     c2Text.textContent = "Submit";
     c2Text.style.backgroundColor = "blue";
-    c2Text.addEventListener("click", () => {
-        submitScore(numCorrect, numIncorrect);
-    });
     c1Text.textContent = "Please enter your name: ";
     let input = document.createElement("input");
+    input.setAttribute("id", "name-input");
     c1Text.appendChild(input);
+    c2Text.addEventListener("click", () => {
+        submitScore();
+    });
 
 }
 
 function submitScore() {
 
-    let totalScore = numCorrect;
+    let nameEntered = document.getElementById("name-input").value;
     let numQuestions = 10;
-    let percentageScore = numCorrect / numQuestions;
-}
+    let percentageScore = (numCorrect / numQuestions) * 100;
+
+    let CurrentPlayer = new Player(
+        nameEntered,
+        percentageScore
+    );
+
+    console.log(CurrentPlayer.playerName);
+    console.log(CurrentPlayer.playerScore);
+
+    let saveData = JSON.stringify(CurrentPlayer);
+    localStorage.setItem("playerData", saveData);
+
+} 
