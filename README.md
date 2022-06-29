@@ -4,9 +4,11 @@
 
 ## JavaScript Quiz Game ##
 
-Want to test your knowledge on JavaScript? If you answered "Yes!" then this is the game for you! Enjoy the journey of improving your knowledge on a variety of JavaScript topics. The source is easily editable to be use for a variety of areas of study and entertainment.
+Want to test your knowledge on JavaScript? If you answered "Yes!" then this is the game for you! Enjoy the journey of improving your knowledge on a variety of JavaScript topics. The source is easily editable to be used for a variety of topics, whether for study or just for fun!
 
 ## Live Website ##
+
+https://chromodyne.github.io/coding_quiz/
 
 ## Screenshot ##
 
