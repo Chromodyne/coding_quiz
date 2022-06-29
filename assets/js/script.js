@@ -7,6 +7,7 @@ let c2Text = document.getElementById("choice2");
 let c3Text = document.getElementById("choice3");
 let c4Text = document.getElementById("choice4");
 
+//Constructor for player data in leaderboard entry.
 function Player(name, score) {
     this.playerName = name;
     this.playerScore = score;
@@ -269,6 +270,7 @@ function evalIncorrect(value) {
         c4Text.style.backgroundColor = "cyan";
     }
 
+    //Lower timer if answer was incorrect.
     timeRemaining -= 5;
 
     changeRound();
@@ -280,7 +282,7 @@ function changeRound() {
     currentRound++;
     
     if (currentRound <= finalRound && timeRemaining >= 0) {
-        setTimeout(changeQuestion, 500);
+        setTimeout(changeQuestion, 750);
     } else {
         scoreEntry();
     }
@@ -311,6 +313,7 @@ function resetDefaults() {
 
 }
 
+//Handles end of game stuff.
 function scoreEntry() {
 
     //Stops the game timer if it hasn't been stopped already.
@@ -333,6 +336,7 @@ function scoreEntry() {
 
 }
 
+//Prepares the page for text entry.
 function setupTextEntry() {
     c1Text.style.backgroundColor = "white";
     c1Text.style.color = "black";
@@ -350,6 +354,7 @@ function setupTextEntry() {
 
 }
 
+//Handles the score submission to the leaderboard.
 function submitScore() {
 
     let nameEntered = document.getElementById("name-input").value;
@@ -361,10 +366,10 @@ function submitScore() {
         percentageScore
     );
 
-    console.log(CurrentPlayer.playerName);
-    console.log(CurrentPlayer.playerScore);
-
+    //Save data in local storage as a JSON string.
     let saveData = JSON.stringify(CurrentPlayer);
     localStorage.setItem("playerData", saveData);
 
+    //Change to the leaderboard.
+    window.location = "./leaderboard.html";
 } 

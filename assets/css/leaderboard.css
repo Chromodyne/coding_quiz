@@ -1,18 +1,80 @@
-#leaderboard-header {
-    margin: auto;
-    padding: 10px;
+/* Opted to avoid reset CSS in this for this for brevity. */
+body {
+    font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, sans-serif;
 }
 
-.main-container {
+h1 {
+    font-size: 40px;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    background-color: teal;
+    border-radius: 5px;
+    color: mintcream;
+    border: 3px solid gray;
+}
+
+footer {
     display: flex;
     justify-content: center;
 }
 
-#name-header {
-    margin: auto;
+footer a {
+    font-size: 25px;
+    background-color: blue;
+    padding: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    border: 3px solid black
+}
+
+footer a:hover {
+    filter: grayscale(20%);
+}
+
+.main-container {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: nowrap row;
+}
+
+li {
+    list-style: none;
+    font-size: 20px;
+    font-weight: 500;
+    align-self: center;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+#name-list-container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+#score-list-container {
+    margin: 10px;
+}
+
+#score-header, #name-header {
+    padding: 0;
     border-bottom: 2px solid black;
 }
 
-#score-header {
-    margin: auto;
+#name-list {
+    display: flex;
+    padding: 0;
+}
+
+#score-list {
+    display: flex;
+    padding: 0;
 }
