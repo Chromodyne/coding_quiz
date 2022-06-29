@@ -344,7 +344,7 @@ function setupTextEntry() {
     c1Text.style.fontSize = "22px";
     c2Text.textContent = "Submit";
     c2Text.style.backgroundColor = "blue";
-    c1Text.textContent = "Please enter your name: ";
+    c1Text.textContent = "Please enter your initials: ";
     let input = document.createElement("input");
     input.setAttribute("id", "name-input");
     c1Text.appendChild(input);
